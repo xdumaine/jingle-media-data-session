@@ -1,0 +1,41 @@
+{
+  "name": "jingle-media-data-session",
+  "version": "0.1.0",
+  "author": "Xander Dumaine <xander.dumaine@gmail.com>",
+  "bugs": "https://github.com/xdumaine/jingle-media-data-session/issues",
+  "contributors": [
+    "Philipp Hancke <fippo@andyet.net>",
+    "Lance Stout <lance@andyet.net>"
+  ],
+  "dependencies": {
+    "extend-object": "^1.0.0",
+    "jingle-media-session": "^1.2.0",
+    "webrtcsupport": "^2.1.2"
+  },
+  "devDependencies": {
+    "browserify": "^5.11.1",
+    "covert": "^1.0.0",
+    "jshint": "^2.5.5",
+    "nsp": "^0.2.6",
+    "precommit-hook": "^1.0.7",
+    "tap-spec": "^0.2.1",
+    "tape": "^2.14.0",
+    "uglify-js": "^2.4.15"
+  },
+  "homepage": "https://github.com/xdumaine/jingle-media-data-session",
+  "keywords": [
+    "webrtc",
+    "xmpp",
+    "jingle"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xdumaine/jingle-media-data-session.git"
+  },
+  "scripts": {
+    "audit": "make audit",
+    "build": "make build"
+  }
+}
