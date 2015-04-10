@@ -66,4 +66,6 @@ MIT
 
 ## Created by
 
+Xander Dumaine put this together from work done in other jingle and webrtc projects by Lance Stout, Phillip Hancke, and the other &yetis.
+
 If you like this, follow [@xanderdumaine](http://twitter.com/xanderdumaine) [@lancestout](http://twitter.com/lancestout) or [@hcornflower](http://twitter.com/hcornflower) on twitter.
