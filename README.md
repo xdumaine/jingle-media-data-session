@@ -1,6 +1,50 @@
 # Jingle Media Data Session
 
-... TODO: creating examples
+To make sure incoming sessions are created as MediaDataSessions, when you create the jingle SessionManager, override `prepare session` to return a `MediaDataSession` instance.
+```javascript
+
+jingle = new Jingle({
+    prepareSession: function (opts) {
+        return new MediaDataSession(opts);
+    }
+});
+```
+
+When creating outgoing sessions, create a `MediaDataSession` and add it to the jingle SessionManager:
+
+```javascript
+var session = new MediaDataSession({
+    sid: sid
+    peer: jid
+    initiator: true
+    stream: stream
+    parent: jingle
+    iceServers: jingle.iceServers
+});
+
+jingle.addSession(session);
+
+```
+
+Then, (when your session is started), you can create and use data channels:
+
+```javascript
+
+session.sendDirectly('dataChannelName', 'topic', { paylod: 'foobar' });
+
+```
+
+And get channel messages with:
+
+```javascript
+
+jingle.on('channelMessage', function (session, channelName, message) {
+    console.log(message.topic, message.payload);
+});
+
+// or session.on('channelMessage', handler)
+
+```
 
 ## Installing
 
