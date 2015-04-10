@@ -7,7 +7,7 @@ function MediaDataSession(opts) {
     MediaSession.call(this, opts);
 
     this.pc.on('addChannel', this.handleDataChannelAdded.bind(this));
-    this._channels = [];
+    this._channels = {};
 }
 
 util.inherits(MediaDataSession, MediaSession);
@@ -22,6 +22,25 @@ Object.defineProperties(MediaDataSession.prototype, {
 });
 
 MediaDataSession.prototype = extend(MediaDataSession.prototype, {
+
+    onSessionInitiate: function (changes, cb) {
+        changes.contents.forEach(function (content, i, contents) {
+            if (content.name === 'data') {
+                content.description = {
+                    descType: 'datachannel'
+                };
+                contents[i] = content;
+            }
+        });
+        MediaSession.prototype.onSessionInitiate.call(this, changes, cb);
+    },
+
+    start: function (constraints, next) {
+        //cause create data channel apriori
+        this.getDataChannel('jingle-media-session');
+        MediaSession.prototype.start.call(this, constraints, next);
+    },
+
     sendDirectly: function (channel, messageType, payload) {
         var message = {
             type: messageType,
