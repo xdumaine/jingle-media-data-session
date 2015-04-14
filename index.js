@@ -47,9 +47,10 @@ MediaDataSession.prototype = extend(MediaDataSession.prototype, {
         MediaSession.prototype.start.call(this, constraints, next);
     },
 
-    sendDirectly: function (channel, messageType, payload) {
+    sendDirectly: function (channel, messageType, creator, payload) {
         var message = {
             type: messageType,
+            creator: creator,
             payload: payload
         };
         var dataChannel = this.getDataChannel(channel);
