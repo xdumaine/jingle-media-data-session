@@ -30,7 +30,7 @@ Then, (when your session is started), you can create and use data channels:
 
 ```javascript
 
-session.sendDirectly('dataChannelName', 'topic', { paylod: 'foobar' });
+session.sendDirectly('dataChannelName', 'topic', { payload: 'foobar' });
 
 ```
 
