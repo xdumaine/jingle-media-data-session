@@ -1,6 +1,5 @@
 var util = require('util');
 var extend = require('extend-object');
-var webrtcsupport = require('webrtcsupport');
 var MediaSession = require('jingle-media-session');
 
 function MediaDataSession(opts) {
@@ -44,7 +43,7 @@ MediaDataSession.prototype = extend(MediaDataSession.prototype, {
     },
 
     getDataChannel: function (name, opts) {
-        if (!webrtcsupport.supportDataChannel) {
+        if (!this.pc.createDataChannel) {
             return this.emit('error', new Error('createDataChannel not supported'));
         }
         var channel = this.channels[name];
