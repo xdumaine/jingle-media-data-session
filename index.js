@@ -56,6 +56,44 @@ MediaDataSession.prototype = extend(MediaDataSession.prototype, {
         return channel;
     },
 
+    switchStream: function (oldStream, newStream, cb) {
+        var self = this;
+
+        cb = cb || function () {};
+
+        var desc = this.pc.localDescription;
+        desc.contents.forEach(function (content) {
+            delete content.transport;
+            delete content.description.payloads;
+        });
+
+        this.pc.removeStream(oldStream);
+        this.send('source-remove', desc);
+
+        this.pc.addStream(newStream);
+        this.pc.handleOffer({
+            type: 'offer',
+            jingle: this.pc.remoteDescription
+        }, function (err) {
+            if (err) {
+                self._log('error', 'Could not process offer for switching streams');
+                return cb(err);
+            }
+            self.pc.answer(function (err, answer) {
+                if (err) {
+                    self._log('error', 'Could not process answer for switching streams');
+                    return cb(err);
+                }
+                answer.jingle.contents.forEach(function (content) {
+                    delete content.transport;
+                    delete content.description.payloads;
+                });
+                self.send('source-add', answer.jingle);
+                cb();
+            });
+        });
+    },
+
     handleDataChannelAdded: function (channel) {
         this.channels[channel.label] = channel;
         this._observeDataChannel(channel);
