@@ -1,6 +1,6 @@
 {
   "name": "jingle-media-data-session",
-  "version": "0.1.8",
+  "version": "2.0.0",
   "author": "Xander Dumaine <xander.dumaine@gmail.com>",
   "bugs": "https://github.com/xdumaine/jingle-media-data-session/issues",
   "contributors": [
@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "extend-object": "^1.0.0",
-    "jingle-media-session": "^1.2.0"
+    "jingle-media-session": "^2.1.0"
   },
   "devDependencies": {
     "browserify": "^5.11.1",
