@@ -1,6 +1,6 @@
 var util = require('util');
 var extend = require('extend-object');
-var MediaSession = require('jingle-media-session');
+var MediaSession = require('jingle-media-session-purecloud');
 
 function MediaDataSession(opts) {
     MediaSession.call(this, opts);
